@@ -27,6 +27,9 @@
                 result.innerHTML += item.dataset.number;
                 oldresult.innerHTML += item.dataset.number;
             }
+            // if (result.innerHTML.includes(".")) {
+            //     document.querySelector(".point").disabled = true;
+            // }
         })
 
     });
@@ -56,27 +59,25 @@
                 result.innerHTML = factX(anyNumber).toFixed(0);
             }
         }
-        console.log(result.innerHTML);
     }
 
     pi.addEventListener("click",function () {
-        if (result.innerHTML === "0" && pi.dataset.number !== ".") {
-            result.innerHTML = pi.dataset.number;
-            oldresult.innerHTML = pi.dataset.number;
-        } else if (result.innerHTML !== ".") {
-            result.innerHTML += pi.dataset.number;
-            oldresult.innerHTML += pi.dataset.number;
-        }
+            if (result.innerHTML.includes(pi.dataset.number)) {
+                pi.disabled = true;
+            } else {
+                result.innerHTML = pi.dataset.number;
+                oldresult.innerHTML = pi.dataset.number;
+            }
     });
 
     root.addEventListener("click",function () {
         oldresult.innerHTML = '√(' + result.innerHTML + ')=';
-        result.innerHTML = Math.sqrt(result.innerHTML.replace(/,/g, '')).toFixed(5).replace(/\.0+$/,'');
+        result.innerHTML = (Math.sqrt(result.innerHTML.replace(/,/g, '')).toFixed(5).replace(/\.0+$/,''))*1;
     });
 
     square.addEventListener("click",function () {
         oldresult.innerHTML = `sqr(${result.innerHTML})=`;
-        result.innerHTML = Math.pow(result.innerHTML.replace(/,/g, ''), 2).toFixed(5).replace(/\.0+$/,'');
+        result.innerHTML = (Math.pow(result.innerHTML.replace(/,/g, ''), 2).toFixed(5).replace(/\.0+$/,''))*1;
     });
 
     power.addEventListener("click",function () {
@@ -122,9 +123,9 @@
             oldresult.innerText = 0;
         }
         result.innerText = result.innerText.slice(0, -1);
-        if (result.innerText =="") {
-            result.innerText = 0;
-        }
+        // if (result.innerText =="") {
+        //     result.innerText = 0;
+        // }
     });
 
     equal.addEventListener("click",function () {
@@ -133,23 +134,23 @@
         } else {
             oldresult.innerHTML = `${oldresult.innerHTML}=`;
             if (oldresult.innerHTML.includes("+")) {
-                result.innerHTML = parseFloat(`${oldresult.innerHTML.split("+")[0]}`) + parseFloat(`${oldresult.innerHTML.split("+")[1]}`);
+                result.innerHTML = ((parseFloat(`${oldresult.innerHTML.split("+")[0]}`) + parseFloat(`${oldresult.innerHTML.split("+")[1]}`)).toFixed(5).replace(/\.0+$/,''))*1;
                 // let commas = result.innerHTML.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 // result.innerHTML = commas;
             } else if (oldresult.innerHTML.includes(minus.innerHTML)) {
-                result.innerHTML = parseFloat(`${oldresult.innerHTML.split(minus.innerHTML)[0]}`) - parseFloat(`${oldresult.innerHTML.split(minus.innerHTML)[1]}`);
+                result.innerHTML = ((parseFloat(`${oldresult.innerHTML.split(minus.innerHTML)[0]}`) - parseFloat(`${oldresult.innerHTML.split(minus.innerHTML)[1]}`)).toFixed(5).replace(/\.0+$/,''))*1;
                 // let commas = result.innerHTML.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 // result.innerHTML = commas;
             } else if (oldresult.innerHTML.includes("×")) {
-                result.innerHTML = parseFloat(`${oldresult.innerHTML.split("×")[0]}`) * parseFloat(`${oldresult.innerHTML.split("×")[1]}`);
+                result.innerHTML = ((parseFloat(`${oldresult.innerHTML.split("×")[0]}`) * parseFloat(`${oldresult.innerHTML.split("×")[1]}`)).toFixed(5).replace(/\.0+$/,''))*1;
                 let commas = result.innerHTML.toLocaleString("en-US");
                 // result.innerHTML = commas;
             } else if (oldresult.innerHTML.includes("÷")) {
-                result.innerHTML = parseFloat(`${oldresult.innerHTML.split("÷")[0]}`) / parseFloat(`${oldresult.innerHTML.split("÷")[1]}`);
+                result.innerHTML = ((parseFloat(`${oldresult.innerHTML.split("÷")[0]}`) / parseFloat(`${oldresult.innerHTML.split("÷")[1]}`)).toFixed(5).replace(/\.0+$/,''))*1;
                 // let commas = result.innerHTML.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 // result.innerHTML = commas;
             } else if (oldresult.innerHTML.includes("^")) {
-                result.innerHTML = Math.pow(parseFloat(`${oldresult.innerHTML.split("^")[0]}`), parseFloat(`${oldresult.innerHTML.split("^")[1]}`));
+                result.innerHTML = ((Math.pow(parseFloat(`${oldresult.innerHTML.split("^")[0]}`), parseFloat(`${oldresult.innerHTML.split("^")[1]}`))).toFixed(5).replace(/\.0+$/,''))*1;
                 // let commas = result.innerHTML.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 // result.innerHTML = commas;
             }
