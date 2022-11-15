@@ -16,6 +16,7 @@
     const clear = document.querySelector(".clear");
     const sign = document.querySelector(".sign");
     const equal = document.querySelector(".equal");
+    const historyResults = document.querySelector(".history-results");
 
     number.forEach((item) => {
         item.addEventListener("click", function () {
@@ -155,5 +156,8 @@
                 // result.innerHTML = commas;
             }
         }
+        historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
+        let redHistory = "<span style='color:#4728E1'>" + (historyResults.innerHTML.substring(historyResults.innerHTML.indexOf("=") + "=".length)) + "</span>";
+        historyResults.innerHTML = oldresult.innerHTML + redHistory;
     });
 }());
