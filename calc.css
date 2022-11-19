@@ -47,9 +47,9 @@ body {
 }
 
 .history-results {
-    display: flex;
-    justify-content: column;
-    padding-left: 6px;
+    /* display: flex; */
+    text-align: right;
+    padding-left: 3px;
     margin-top: 10px;
     width: 145px;
     height: 440px;
@@ -58,6 +58,7 @@ body {
     font-size: 10px;
     font-weight: bold;
     border-top: 3px solid black;
+    word-break: break-all; 
 }
 
 ::-webkit-scrollbar {
