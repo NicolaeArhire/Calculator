@@ -16,7 +16,12 @@
     const sign = document.querySelector(".sign");
     const equal = document.querySelector(".equal");
     const point = document.querySelector(".point");
+    const pi = document.querySelector(".pi");
+    const historyContent = document.querySelector(".history-content");
     const historyResults = document.querySelector(".history-results");
+    const historyClear = document.querySelector("#h-clear");
+    const historyExport = document.querySelector("#h-export");
+
 
     number.forEach((item) => {
         item.onclick = function () {
@@ -43,8 +48,11 @@
                 result.innerHTML = item.dataset.number;
                 oldresult.innerHTML = item.dataset.number;
             }
-        }
-    });
+
+            if (result.innerHTML.includes(pi.dataset.number)) {
+                pi.dataset.number = "";
+            }
+    }});
 
     function factX(n) {
         function gamma(z) {
@@ -54,6 +62,7 @@
     };
     
     factorial.onclick = function () {
+        pi.dataset.number = 3.1415926;
 
         const anyNumber = parseFloat(result.innerHTML);
         if (anyNumber < 0) {
@@ -73,13 +82,15 @@
         }
 
         if (isNaN(result.innerHTML)) {
-            historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
+            historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
             let blueHistory = "<span style='color:#4728E1'>" + " Please correct." + "</span>";
-            historyResults.innerHTML = oldresult.innerHTML + blueHistory;
+            historyContent.insertAdjacentHTML("beforeend", oldresult.innerHTML + blueHistory + "<br>");
+            historyContent.innerHTML = "";
         } else {
-            historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
-            let redHistory = "<span style='color:#4728E1'>" + (historyResults.innerHTML.substring(historyResults.innerHTML.indexOf("=") + "=".length)) + "</span>";
-            historyResults.innerHTML = oldresult.innerHTML + redHistory;
+            historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
+            let blueHistory = "<span style='color:#4728E1'>" + " " + (historyContent.innerHTML.substring(historyContent.innerHTML.indexOf("=") + "=".length)) + "</span>";
+            historyContent.insertAdjacentHTML("afterend", oldresult.innerHTML + blueHistory + "<br>");
+            historyContent.innerHTML = "";
         }
     }
 
@@ -87,6 +98,8 @@
         point.disabled = false;
         result.innerHTML = "0";
         oldresult.innerHTML = "0";
+        pi.dataset.number = 3.1415926;
+
     };
 
     backspace.onclick = function () {
@@ -111,43 +124,72 @@
     };
 
     root.onclick = function () {
+        pi.dataset.number = 3.1415926;
+
         oldresult.innerHTML = '√(' + result.innerHTML + ')=';
         result.innerHTML = (Math.sqrt(result.innerHTML).toFixed(5).replace(/\.0+$/,''))*1;
 
         if (isNaN(result.innerHTML)) {
-            historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
+            historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
             let blueHistory = "<span style='color:#4728E1'>" + " Please correct." + "</span>";
-            historyResults.innerHTML = oldresult.innerHTML + blueHistory;
+            historyContent.insertAdjacentHTML("beforeend", oldresult.innerHTML + blueHistory + "<br>");
+            historyContent.innerHTML = "";
         } else {
-            historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
-            let redHistory = "<span style='color:#4728E1'>" + (historyResults.innerHTML.substring(historyResults.innerHTML.indexOf("=") + "=".length)) + "</span>";
-            historyResults.innerHTML = oldresult.innerHTML + redHistory;
-        }
+            historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
+            let blueHistory = "<span style='color:#4728E1'>" + " " + (historyContent.innerHTML.substring(historyContent.innerHTML.indexOf("=") + "=".length)) + "</span>";
+            historyContent.insertAdjacentHTML("afterend", oldresult.innerHTML + blueHistory + "<br>");
+            historyContent.innerHTML = "";
+     }
     };
 
     square.onclick = function () {
+        pi.dataset.number = 3.1415926;
+
         oldresult.innerHTML = `(${result.innerHTML})²=`;
         result.innerHTML = (Math.pow(result.innerHTML, 2).toFixed(5).replace(/\.0+$/,''))*1;
-        historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
-        let redHistory = "<span style='color:#4728E1'>" + (historyResults.innerHTML.substring(historyResults.innerHTML.indexOf("=") + "=".length)) + "</span>";
-        historyResults.innerHTML = oldresult.innerHTML + redHistory;
+        historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
+        let blueHistory = "<span style='color:#4728E1'>" + " " + (historyContent.innerHTML.substring(historyContent.innerHTML.indexOf("=") + "=".length)) + "</span>";
+        historyContent.insertAdjacentHTML("afterend", oldresult.innerHTML + blueHistory + "<br>");
+        historyContent.innerHTML = "";
     };
 
     sign.onclick = function () {
+        equal.disabled = false;
+        point.disabled = false;
+
         if ((oldresult.innerHTML.includes("="))) {
             oldresult.innerHTML = result.innerHTML;
-        } else {
-            oldresult.innerHTML = -(-(oldresult.innerHTML));
-            result.innerHTML = -(-(result.innerHTML));
-        }
+        } 
 
-        oldresult.innerHTML = (oldresult.innerHTML)*-1;
-        result.innerHTML = (result.innerHTML)*-1;
+        if ((oldresult.innerHTML.includes(plus.innerHTML))) {
+            oldresult.innerHTML = (oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf(plus.innerHTML))) + plus.innerHTML + 
+            (oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf(plus.innerHTML)+1))*-1;
+            result.innerHTML = (result.innerHTML)*-1;
+        } else if ((oldresult.innerHTML.includes(multiply.innerHTML))) {
+            oldresult.innerHTML = (oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf(multiply.innerHTML))) + multiply.innerHTML + 
+            (oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf(multiply.innerHTML)+1))*-1;
+            result.innerHTML = (result.innerHTML)*-1;
+        } else if ((oldresult.innerHTML.includes(divide.innerHTML))) {
+            oldresult.innerHTML = (oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf(divide.innerHTML))) + divide.innerHTML + 
+            (oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf(divide.innerHTML)+1))*-1;
+            result.innerHTML = (result.innerHTML)*-1;
+        } else if ((oldresult.innerHTML.includes("^"))) {
+            oldresult.innerHTML = (oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf("^"))) + "^" + 
+            (oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf("^")+1))*-1;
+            result.innerHTML = (result.innerHTML)*-1;
+        } else {
+            oldresult.innerHTML = (oldresult.innerHTML)*-1;
+            result.innerHTML = (result.innerHTML)*-1;
+        }
+        
+
     };
 
     power.onclick = function () {
         equal.disabled = false;
         point.disabled = false;
+        pi.dataset.number = 3.1415926;
+
         if ((oldresult.innerHTML.slice(-1)) == "+") {
             oldresult.innerHTML = `${oldresult.innerHTML.slice(0,-1)}^`;
             result.innerHTML = "";
@@ -172,6 +214,8 @@
     plus.onclick = function () {
         equal.disabled = false;
         point.disabled = false;
+        pi.dataset.number = 3.1415926;
+
         if ((oldresult.innerHTML.slice(-1)) == "+") {
             oldresult.innerHTML = `${oldresult.innerHTML.slice(0,-1)}+`;
             result.innerHTML = "";
@@ -196,6 +240,8 @@
     minus.onclick = function () {
         equal.disabled = false;
         point.disabled = false;
+        pi.dataset.number = 3.1415926;
+
         if ((oldresult.innerHTML.slice(-1)) == "+") {
             oldresult.innerHTML = `${oldresult.innerHTML.slice(0,-1)}-`;
             result.innerHTML = "";
@@ -220,6 +266,8 @@
     multiply.onclick = function () {
         equal.disabled = false;
         point.disabled = false;
+        pi.dataset.number = 3.1415926;
+
         if ((oldresult.innerHTML.slice(-1)) == "+") {
             oldresult.innerHTML = `${oldresult.innerHTML.slice(0,-1)}x`;
             result.innerHTML = "";
@@ -229,7 +277,7 @@
         } else if ((oldresult.innerHTML.slice(-1)) == "-") {
             oldresult.innerHTML = `${oldresult.innerHTML.slice(0,-1)}x`;
             result.innerHTML = "";
-        } else if ((oldresult.innerHTML.slice(-1)) == "×") {
+        } else if ((oldresult.innerHTML.slice(-1)) == "x") {
             oldresult.innerHTML = `${oldresult.innerHTML.slice(0,-1)}x`;
             result.innerHTML = "";
         } else if ((oldresult.innerHTML.slice(-1)) == "÷") {
@@ -244,6 +292,8 @@
     divide.onclick = function () {
         equal.disabled = false;
         point.disabled = false;
+        pi.dataset.number = 3.1415926;
+
         if ((oldresult.innerHTML.slice(-1)) == "+") {
             oldresult.innerHTML = `${oldresult.innerHTML.slice(0,-1)}÷`;
             result.innerHTML = "";
@@ -271,42 +321,64 @@
         multiply.disabled = false;
         divide.disabled = false;
         point.disabled = false;
+        pi.dataset.number = 3.1415926;
+
         if (oldresult.innerHTML.includes("=") || isNaN(oldresult.innerHTML.slice(-1))) {
             equal.disabled = true;
         } else {
             oldresult.innerHTML = `${oldresult.innerHTML}=`;
             if (oldresult.innerHTML.includes(plus.innerHTML)) {
                 result.innerHTML = ((parseFloat(`${oldresult.innerHTML.split(plus.innerHTML)[0]}`) + parseFloat(`${oldresult.innerHTML.split(plus.innerHTML)[1]}`)).toFixed(5).replace(/\.0+$/,''))*1;
-            } else if (oldresult.innerHTML.includes(minus.innerHTML)) {
+            } else if (oldresult.innerHTML.includes(minus.innerHTML) && !(oldresult.innerHTML.includes(multiply.innerHTML)) && !(oldresult.innerHTML.includes(divide.innerHTML))
+                        && !(oldresult.innerHTML.includes("^"))) {
                 result.innerHTML = ((parseFloat(`${oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf(minus.innerHTML))}`) - 
                 parseFloat(`${oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf(minus.innerHTML)+1)}`)).toFixed(5).replace(/\.0+$/,''))*1;
-            } else if (oldresult.innerHTML.includes("x")) {
+            } else if (oldresult.innerHTML.includes(multiply.innerHTML)) {
                 result.innerHTML = ((parseFloat(`${oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf(multiply.innerHTML))}`) * 
                 parseFloat(`${oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf(multiply.innerHTML)+1)}`)).toFixed(5).replace(/\.0+$/,''))*1;
-
-                console.log(parseFloat(`${oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf("x"))}`));
-                console.log(parseFloat(`${oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf("x")+1)}`));
-
             } else if (oldresult.innerHTML.includes(divide.innerHTML)) {
-                result.innerHTML = ((parseFloat(`${oldresult.innerHTML.split(divide.innerHTML)[0]}`) / parseFloat(`${oldresult.innerHTML.split(divide.innerHTML)[1]}`)).toFixed(5).replace(/\.0+$/,''))*1;
+                result.innerHTML = ((parseFloat(`${oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf(divide.innerHTML))}`) / 
+                parseFloat(`${oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf(divide.innerHTML)+1)}`)).toFixed(5).replace(/\.0+$/,''))*1;
             } else if (oldresult.innerHTML.includes("^")) {
-                result.innerHTML = ((Math.pow(parseFloat(`${oldresult.innerHTML.split("^")[0]}`), parseFloat(`${oldresult.innerHTML.split("^")[1]}`))).toFixed(5).replace(/\.0+$/,''))*1;
+                result.innerHTML = ((Math.pow(parseFloat(`${oldresult.innerHTML.substring(0, oldresult.innerHTML.lastIndexOf("^"))}`), 
+                parseFloat(`${oldresult.innerHTML.substring(oldresult.innerHTML.lastIndexOf("^")+1)}`))).toFixed(5).replace(/\.0+$/,''))*1;
             }
         }
 
         if ((oldresult.innerHTML.slice(-1) == "+") || (oldresult.innerHTML.slice(-1) == "-") || (oldresult.innerHTML.slice(-1) == "x")
             || (oldresult.innerHTML.slice(-1) == "÷") || (oldresult.innerHTML.slice(-1) == ".")) {
-            historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
+            historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
             let blueHistory = "=" + "<span style='color:#4728E1'>" + " Please correct." + "</span>";
-            historyResults.innerHTML = oldresult.innerHTML + blueHistory;
+            historyContent.insertAdjacentHTML("beforeend", oldresult.innerHTML + blueHistory + "<br>");
         } else if (isNaN(result.innerHTML)) {
-           historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
+           historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
            let blueHistory = "<span style='color:#4728E1'>" + " Please correct." + "</span>";
-           historyResults.innerHTML = oldresult.innerHTML + blueHistory;
+           historyContent.insertAdjacentHTML("beforeend", oldresult.innerHTML + blueHistory + "<br>");
         } else {
-            historyResults.innerHTML = oldresult.innerHTML + result.innerHTML;
-            let blueHistory = "<span style='color:#4728E1'>" + " " + (historyResults.innerHTML.substring(historyResults.innerHTML.indexOf("=") + "=".length)) + "</span>";
-            historyResults.innerHTML = oldresult.innerHTML + blueHistory;
+            historyContent.innerHTML = oldresult.innerHTML + result.innerHTML;
+            let blueHistory = "<span style='color:#4728E1'>" + " " + (historyContent.innerHTML.substring(historyContent.innerHTML.indexOf("=") + "=".length)) + "</span>";
+            historyContent.insertAdjacentHTML("afterend", oldresult.innerHTML + blueHistory + "<br>");
+            historyContent.innerHTML = "";
         }
     };
+
+    historyClear.onclick = function () {
+        window.history.go(0);
+    }
+
+    historyExport.onclick = function () {
+            let header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+                 "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+                 "xmlns='http://www.w3.org/TR/REC-html40'>" +
+                 "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+            let footer = "</body></html>";
+            let sourceHTML = header + "<span style='font-weight:bold; text-decoration:underline'>" + "Calculator History_" + "(" + new Date().toLocaleString() + "):" + "</span>" + "<br>" + "<br>" + historyResults.innerHTML + footer;
+            let source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            let fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = "Calculator History_" + new Date().toLocaleString() + ".doc";
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+    }
 }());
