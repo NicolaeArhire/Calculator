@@ -9,6 +9,7 @@ body {
 .wrapper {
     display: flex;
     flex-direction: row;
+    -moz-transform: scale(2);
 }
 
 .calculator {
