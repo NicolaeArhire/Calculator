@@ -9,7 +9,6 @@ body {
 .wrapper {
     display: flex;
     flex-direction: row;
-    /* zoom: 110%; */
 }
 
 .calculator {
@@ -198,7 +197,6 @@ body {
     .wrapper {
         display: flex;
         flex-direction: column;
-        zoom: 100%;
     }
 
     .calculator {
