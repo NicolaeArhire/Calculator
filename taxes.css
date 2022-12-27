@@ -1,0 +1,314 @@
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(31, 27, 27);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.taxes {
+  background-color: rgb(224, 200, 170);
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  width: 317px;
+  height: 233px;
+  margin: 15px 0 0 15px;
+  border-radius: 10px 0 0 0;
+  border-top: 3px solid rgb(68, 92, 4);
+  border-bottom: 3px solid rgb(0, 0, 0);
+  border-left: 3px solid rgb(68, 92, 4);
+}
+
+.converter {
+  background-color: rgb(224, 200, 170);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 317px;
+  height: 250px;
+  margin: 0 0 15px 15px;
+  border-radius: 0 0 0 10px;
+  border-bottom: 3px solid rgb(68, 92, 4);
+  border-left: 3px solid rgb(68, 92, 4);
+}
+
+.extra-options {
+  width: 125px;
+  height: 486px;
+  margin: 15px 15px 15px 0;
+  background-color: rgb(224, 200, 170);
+  border-top: 3px solid rgb(68, 92, 4);
+  border-right: 3px solid rgb(68, 92, 4);
+  border-bottom: 3px solid rgb(68, 92, 4);
+  border-left: 3px solid rgb(0, 0, 0);
+  border-radius: 0 10px 10px 0;
+}
+
+.money-monthly {
+  display: flex;
+  justify-content: center;
+  width: 125px;
+  height: 20px;
+  background-color: rgb(43, 37, 32);
+  border-radius: 10px;
+  color: white;
+  margin-top: 6px;
+}
+
+#h-money {
+  cursor: pointer;
+  background: none;
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+
+#h-money {
+  color: rgb(64, 255, 0);
+}
+
+#h-money:hover {
+  color: rgb(255, 0, 0);
+}
+
+#h-money:hover {
+  color: rgb(20, 164, 231);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 119, 28);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff0000;
+}
+
+.container {
+  display: grid;
+  width: 140px;
+  height: 220px;
+  grid-template-rows: repeat(6, 1fr);
+  align-items: center;
+  border-radius: 0px 0px 10px 10px;
+  padding-left: 5px;
+}
+
+.container:nth-of-type(2) {
+  width: 80px;
+  justify-items: center;
+}
+
+.container:nth-of-type(3) {
+  width: 65px;
+  justify-items: center;
+}
+
+.container:nth-child(-n + 1) {
+  text-decoration: underline;
+}
+
+.container:nth-child(1) {
+  text-decoration: none;
+}
+
+.curr-title {
+  color: rgb(23, 13, 78);
+  text-decoration: overline;
+  padding-top: 5px;
+}
+
+.input,
+.input-calculate {
+  width: 70px;
+  height: 25px;
+  border-radius: 6px;
+  border: 1px solid lime;
+  background-color: white;
+}
+
+.input-calculate {
+  background-color: rgb(181, 209, 209);
+  height: 25px;
+  color: black;
+}
+
+.input::placeholder,
+.input-calculate::placeholder {
+  font-size: 12px;
+}
+
+.user-input {
+  color: rgb(12, 24, 179);
+  text-decoration: underline;
+}
+
+/* Converters */
+
+.converter-container {
+  display: grid;
+  width: 140px;
+  height: 220px;
+  grid-template-rows: repeat(6, 1fr);
+  align-items: center;
+  border-radius: 0px 0px 10px 10px;
+  padding-left: 5px;
+}
+
+.converter-container:nth-of-type(2) {
+  width: 80px;
+  justify-items: center;
+}
+
+.converter-container:nth-of-type(3) {
+  width: 65px;
+  justify-items: center;
+}
+
+.curr-from,
+.curr-to,
+.numeral-from,
+.numeral-to,
+.metric-from,
+.metric-to {
+  width: 70px;
+  height: 25px;
+  border-radius: 6px;
+  border: 1px solid lime;
+  background-color: white;
+}
+
+.curr-from,
+.numeral-from,
+.metric-from {
+  background-color: rgb(181, 209, 209);
+}
+
+.converter-currency,
+.converter-numeral,
+.converter-metric {
+  margin-top: 1px;
+  color: rgb(8, 41, 112);
+  text-decoration: underline;
+  padding-bottom: 2px;
+}
+
+.converter-title {
+  color: rgb(23, 13, 78);
+  padding-top: 15px;
+}
+
+.currency select {
+  background-color: transparent;
+  color: #0e3114;
+  height: 32px;
+  border: none;
+  border-radius: 5px;
+}
+
+.currency input {
+  background-color: transparent;
+  color: #19241c;
+  width: 400px;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  padding: 2px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-top: 4px;
+}
+.currency select option {
+  background-color: #c3d617;
+  font-size: 1rem;
+  color: rgb(20, 41, 26);
+}
+
+#switch,
+#converter_switch {
+  width: 130px;
+  background-color: rgb(211, 152, 152);
+  color: #213a25;
+  text-align: left;
+  border: none;
+  border-radius: 10px;
+  padding: 0 0 0 5px;
+}
+
+#switch:hover,
+#converter_switch:hover {
+  cursor: pointer;
+}
+
+#switch:active,
+#converter_switch:active {
+  background-color: #0ce4ec;
+}
+
+select:focus,
+input:focus,
+button:focus {
+  outline: 0;
+}
+
+@media (max-width: 501px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .taxes {
+    background-color: rgb(224, 200, 170);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 317px;
+    height: 233px;
+    margin: 15px 0 0 0;
+    border-radius: 10px 10px 0 0;
+    border-right: 3px solid rgb(68, 92, 4);
+    border-bottom: 2px solid black;
+  }
+
+  .converter {
+    background-color: rgb(224, 200, 170);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 317px;
+    height: 250px;
+    margin: 0 0 15px 0;
+    border-radius: 0 0 10px 10px;
+    border-right: 3px solid rgb(68, 92, 4);
+  }
+
+  .extra-options {
+    width: 317px;
+    height: 486px;
+    margin: 1px 15px 15px 0;
+    background-color: rgb(224, 200, 170);
+    border: 3px solid rgb(68, 92, 4);
+    border-radius: 10px;
+  }
+
+  .money-monthly {
+    width: 317px;
+  }
+}
