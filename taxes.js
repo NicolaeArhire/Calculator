@@ -190,7 +190,7 @@ let numberRefresh = document.querySelector(".number_refresh");
 
 function numberQuizz() {
   fetch(
-    `http://numbersapi.com/${numberInfo.value}/${numberInfo1.value}/date?json`
+    `https://cors-anywhere.herokuapp.com/http://numbersapi.com/${numberInfo.value}/${numberInfo1.value}/date?json`
   )
     .then((response) => response.json())
     .then((response) => (numberResult.value = response.text));
