@@ -11,7 +11,6 @@
       href="https://img.icons8.com/color/72/plus--v1.png"
       type="image/x-icon"
     />
-    <script type="text/javascript" src="./taxes.js" defer></script>
   </head>
   <body>
     <div class="wrapper">
@@ -223,16 +222,14 @@
         <div class="converter">
           <div class="converter-container">
             <button id="converter_switch">
-              Switch Currency
+              Switch
               <a disabled style="font-size: 1.2rem; text-decoration: none"
                 >&#8660;</a
               >
             </button>
-            <label class="converter-currency">Currency Converter:</label>
+            <label class="converter-currency">Currencies:</label>
             <label></label>
-            <label class="converter-numeral">Numeral Converter:</label>
-            <label></label>
-            <label class="converter-metric">Metric Converter:</label>
+            <label class="converter-numeral">Numerals:</label>
           </div>
           <div class="converter-container">
             <div class="currency">
@@ -291,11 +288,9 @@
                 <option value="ZAR">ZAR</option>
               </select>
             </div>
-            <input type="number" name="" class="curr-from" value="1" />
+            <input type="text" name="" class="curr-from" value="1" />
             <label class="converter-title">ARABIC</label>
             <input class="numeral-from" type="text" placeholder="0" value="" />
-            <label class="converter-title">RON</label>
-            <input class="metric-from" type="text" placeholder="0" value="" />
           </div>
           <div class="converter-container">
             <div class="currency">
@@ -354,7 +349,7 @@
                 <option value="ZAR">ZAR</option>
               </select>
             </div>
-            <input type="number" name="" class="curr-to" disabled />
+            <input type="text" name="" class="curr-to" disabled />
             <label class="converter-title">ROMAN</label>
             <input
               class="numeral-to"
@@ -363,14 +358,35 @@
               value=""
               disabled
             />
-            <label class="converter-title">RON</label>
+          </div>
+          <div class="numbers_container">
+            <p class="numbers_type">Pick a date:</p>
+            <p class="numbers_month">M:</p>
             <input
-              class="metric-to"
+              class="number"
               type="text"
               placeholder="0"
               value=""
-              disabled
+              onkeyup="numberQuizz()"
             />
+            <p class="numbers_day">D:</p>
+            <input
+              class="number1"
+              type="text"
+              placeholder="0"
+              value=""
+              onkeyup="numberQuizz()"
+            />
+            <button class="number_refresh" onclick="refreshResult()">
+              <a id="number_action">Refresh</a>
+            </button>
+            <textarea
+              class="number_info"
+              name="message"
+              placeholder="..."
+              disabled
+              style="resize: none"
+            ></textarea>
           </div>
         </div>
       </div>
@@ -382,5 +398,6 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="./taxes.js"></script>
   </body>
 </html>

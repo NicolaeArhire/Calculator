@@ -1,4 +1,4 @@
-// Salary Converter Calculator
+// Salary Converter
 
 const input_salary = document.querySelector(".input-salary");
 const output_salary = document.querySelector(".output-salary");
@@ -64,7 +64,7 @@ function convertSalary() {
 }
 convertSalary();
 
-// Currency Converter Calculator
+// Currency Converter
 
 const input_currency = document.querySelector("#input_currency");
 const output_currency = document.querySelector("#output_currency");
@@ -102,7 +102,7 @@ function convertCurrency() {
 }
 convertCurrency();
 
-// Numeral Converter Calculator
+// Numeral Converter
 
 const arabicNumeral = document.querySelector(".numeral-from");
 const romanNumeral = document.querySelector(".numeral-to");
@@ -138,17 +138,14 @@ arabicNumeral.addEventListener("input", () => {
   let convertedNumeral = convertNumeral(arabicNumeral.value);
   if (arabicNumeral.value.match(/^[0-9]+$/)) {
     romanNumeral.value = convertedNumeral;
-    romanNumeral.style.fontSize = "14px";
+    romanNumeral.style.fontSize = "11px";
     romanNumeral.style.color = "black";
-    console.log(arabicNumeral.value);
   } else if (arabicNumeral.innerHTML.length > 4) {
     romanNumeral.value = "Max. 4 digits.";
-    console.log(arabicNumeral.value);
   } else {
     romanNumeral.value = "Please correct.";
     romanNumeral.style.fontSize = "10.5px";
     romanNumeral.style.color = "red";
-    console.log(arabicNumeral.value);
   }
 });
 
@@ -157,6 +154,48 @@ arabicNumeral.addEventListener("input", () => {
     romanNumeral.value = "Max. 4 digits.";
     romanNumeral.style.fontSize = "11px";
     romanNumeral.style.color = "red";
-    console.log(arabicNumeral.value);
   }
 });
+
+// // ESM:
+// import convert from "convert";
+// // CJS:
+// const { convert } = require("convert");
+
+// // 360 seconds into minutes
+// convert(360, "seconds").to("minutes");
+// // -> 6
+
+// // BigInt support
+// convert(20n, "hours").to("minutes");
+// // -> 1200n
+
+// // Format to the best unit automatically
+// convert(5500, "meters").to("best");
+// // -> { quantity: 5.5, unit: 'km', toString: () => '5.5km' }
+
+// // We also do length, data, volume, mass, temperature, and more
+// console.log(convert(5, "kilometers").to("nautical miles"));
+// convert(12, "pounds").to("ounces");
+// convert(8192, "bytes").to("KiB");
+// convert(10, "atmospheres").to("kPa");
+// convert(451, "fahrenheit").to("celsius");
+
+// Date Quizz
+
+let numberInfo = document.querySelector(".number");
+let numberInfo1 = document.querySelector(".number1");
+let numberResult = document.querySelector(".number_info");
+let numberRefresh = document.querySelector(".number_refresh");
+
+function numberQuizz() {
+  fetch(
+    `http://numbersapi.com/${numberInfo.value}/${numberInfo1.value}/date?json`
+  )
+    .then((response) => response.json())
+    .then((response) => (numberResult.value = response.text));
+}
+
+function refreshResult() {
+  numberQuizz();
+}

@@ -33,7 +33,7 @@ body {
 .converter {
   background-color: rgb(224, 200, 170);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 90px 80px 147px;
   width: 317px;
   height: 250px;
   margin: 0 0 15px 15px;
@@ -166,46 +166,45 @@ body {
 
 .converter-container {
   display: grid;
-  width: 140px;
-  height: 220px;
-  grid-template-rows: repeat(6, 1fr);
+  width: 75px;
+  height: 130px;
+  grid-template-rows: repeat(4, 1fr);
   align-items: center;
   border-radius: 0px 0px 10px 10px;
   padding-left: 5px;
 }
 
 .converter-container:nth-of-type(2) {
-  width: 80px;
+  width: 90px;
   justify-items: center;
 }
 
 .converter-container:nth-of-type(3) {
-  width: 65px;
+  width: 120px;
   justify-items: center;
+  padding-left: 20px;
 }
 
 .curr-from,
+.numeral-from {
+  width: 80px;
+  height: 25px;
+  border-radius: 6px;
+  border: 1px solid lime;
+  background-color: rgb(181, 209, 209);
+}
+
 .curr-to,
-.numeral-from,
-.numeral-to,
-.metric-from,
-.metric-to {
-  width: 70px;
+.numeral-to {
+  width: 115px;
   height: 25px;
   border-radius: 6px;
   border: 1px solid lime;
   background-color: white;
 }
 
-.curr-from,
-.numeral-from,
-.metric-from {
-  background-color: rgb(181, 209, 209);
-}
-
 .converter-currency,
-.converter-numeral,
-.converter-metric {
+.converter-numeral {
   margin-top: 1px;
   color: rgb(8, 41, 112);
   text-decoration: underline;
@@ -243,9 +242,18 @@ body {
   color: rgb(20, 41, 26);
 }
 
-#switch,
-#converter_switch {
+#switch {
   width: 130px;
+  background-color: rgb(211, 152, 152);
+  color: #213a25;
+  text-align: left;
+  border: none;
+  border-radius: 10px;
+  padding: 0 0 0 5px;
+}
+
+#converter_switch {
+  width: 70px;
   background-color: rgb(211, 152, 152);
   color: #213a25;
   text-align: left;
@@ -270,6 +278,63 @@ button:focus {
   outline: 0;
 }
 
+.numbers_container {
+  display: grid;
+  width: 310px;
+  height: 120px;
+  grid-template-columns: 90px 20px 60px 17px 60px 80px;
+  align-items: center;
+  padding-top: 3px;
+  padding-left: 5px;
+}
+
+.numbers_type {
+  color: rgb(8, 41, 112);
+  text-decoration: underline;
+  margin: 0;
+}
+
+.numbers_month,
+.numbers_day {
+  margin: 0;
+}
+
+.number_refresh {
+  width: 55px;
+  background-color: rgb(92, 92, 119);
+  border: none;
+  border-radius: 10px;
+  color: yellow;
+}
+
+.number,
+.number1 {
+  width: 50px;
+  border-radius: 7px;
+  border: 1px solid lime;
+}
+
+.number_info {
+  grid-column: 1/4;
+  width: 295px;
+  height: 70px;
+  padding-left: 5px;
+}
+
+#number_action {
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+#number_action:hover {
+  color: rgb(255, 0, 0);
+}
+
+#number_action:active {
+  color: rgb(19, 211, 236);
+}
+
 @media (max-width: 501px) {
   .wrapper {
     display: flex;
@@ -291,7 +356,7 @@ button:focus {
   .converter {
     background-color: rgb(224, 200, 170);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 90px 80px 147px;
     width: 317px;
     height: 250px;
     margin: 0 0 15px 0;
