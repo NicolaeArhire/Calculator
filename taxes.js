@@ -169,7 +169,7 @@ function numberQuizz() {
     `https://cors-anywhere.herokuapp.com/http://numbersapi.com/${numberInfo.value}/${numberInfo1.value}/date?json`
   );
 
-  // The above URL is updated so it can accept "https" and be loaded on GitHub pages, but has limited requests
+  // The above URL is updated so it can accept "https" and be loaded on GitHub pages, but has limited requests.
 
   fetch(
     `http://numbersapi.com/${numberInfo.value}/${numberInfo1.value}/date?json`
