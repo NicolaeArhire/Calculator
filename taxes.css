@@ -1,6 +1,9 @@
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transform: scale(1.5);
   margin: 0;
   padding: 0;
   background-color: rgb(31, 27, 27);
@@ -336,6 +339,11 @@ button:focus {
 }
 
 @media (max-width: 501px) {
+  body {
+    margin-top: 55px;
+    transform: scale(0.98);
+  }
+
   .wrapper {
     display: flex;
     flex-direction: column;

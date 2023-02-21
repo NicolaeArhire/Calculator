@@ -157,30 +157,6 @@ arabicNumeral.addEventListener("input", () => {
   }
 });
 
-// // ESM:
-// import convert from "convert";
-// // CJS:
-// const { convert } = require("convert");
-
-// // 360 seconds into minutes
-// convert(360, "seconds").to("minutes");
-// // -> 6
-
-// // BigInt support
-// convert(20n, "hours").to("minutes");
-// // -> 1200n
-
-// // Format to the best unit automatically
-// convert(5500, "meters").to("best");
-// // -> { quantity: 5.5, unit: 'km', toString: () => '5.5km' }
-
-// // We also do length, data, volume, mass, temperature, and more
-// console.log(convert(5, "kilometers").to("nautical miles"));
-// convert(12, "pounds").to("ounces");
-// convert(8192, "bytes").to("KiB");
-// convert(10, "atmospheres").to("kPa");
-// convert(451, "fahrenheit").to("celsius");
-
 // Date Quizz
 
 let numberInfo = document.querySelector(".number");
@@ -191,6 +167,12 @@ let numberRefresh = document.querySelector(".number_refresh");
 function numberQuizz() {
   fetch(
     `https://cors-anywhere.herokuapp.com/http://numbersapi.com/${numberInfo.value}/${numberInfo1.value}/date?json`
+  );
+
+  // The above URL is updated so it can accept "https" and be loaded on GitHub pages, but has limited requests
+
+  fetch(
+    `http://numbersapi.com/${numberInfo.value}/${numberInfo1.value}/date?json`
   )
     .then((response) => response.json())
     .then((response) => (numberResult.value = response.text));
